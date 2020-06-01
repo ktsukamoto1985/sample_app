@@ -10,8 +10,11 @@ class SessionsController < ApplicationController
   def create
     # ローカル変数で問題ないので@userにはしなくて十分
     user = User.find_by(email: params[:session][:email].downcase) # find_byなのでいなかったらnilが返ってくる
+    
     if user && user.authenticate(params[:session][:password]) #ANDなので@userがnilかfalseならもう右はやらない(nilガード)
-      # Success => login
+      # Success
+      log_in user # log_inはsessions_helperにある
+      redirect_to user
     else
       # Failure
       # alert-danger => 赤色のflash
