@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   
   # POST /users (+ params)
   def create
-    # User.create(params[:user])
+    # User.create(params[:user]) とすればいい時代もあったが、
+    # 意図せずデータベースを書き換えられる危険性（マスアサインメント脆弱性）のためそれは過去の話
     @user = User.new(user_params)
     if @user.save
       # Success (valid params)
