@@ -25,6 +25,8 @@ module SessionsHelper
       # a ||= hoge -> a = a || hoge (a += 1と同じような書き方)
       # 元のaがtrueならそのまま、falseならhogeをする
       
+      # こういうのをメモ化という
+      
     end
     
   end
@@ -32,4 +34,11 @@ module SessionsHelper
   def logged_in?
     !current_user.nil? # current_userが存在していればtrue
   end
+  
+  # 現在のユーザーをログアウトする
+  def log_out # 引数はいらないんだなあ
+    session.delete(:user_id) # sessionの値を消す
+    @current_user = nil # メモ化した変数を消す
+  end
+  
 end

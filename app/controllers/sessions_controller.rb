@@ -29,4 +29,12 @@ class SessionsController < ApplicationController
       #                 helpとかに行って1回目
     end
   end
+  
+  # DELETE /logout
+  def destroy
+    log_out
+    redirect_to root_url # ログアウトしたらトップページに飛ばす
+    # rootの時はなぜかroot_pathよりroot_urlを見ることが多い
+  end
+  
 end

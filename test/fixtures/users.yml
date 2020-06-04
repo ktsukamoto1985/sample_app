@@ -7,3 +7,12 @@
 # two:
 #   name: MyString2
 #   email: MyString2
+
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
+# passwordとか作りたいんだけどそれは保存されないからハッシュ化させないといけない
+# しょうがないから自分でハッシュ化するメソッドを作るしかない
+# has_secure_passwordがやってくれてた
+# password:ってつけちゃうとエラーが出る

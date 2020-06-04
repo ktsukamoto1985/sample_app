@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # Success (valid params)
+      # ユーザー登録と同時にログインもする
+      log_in @user
       
       # flash (before GET request)
       flash[:success] = "Welcome to the Sample App!"
