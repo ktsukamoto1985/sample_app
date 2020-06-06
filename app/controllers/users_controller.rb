@@ -37,6 +37,12 @@ class UsersController < ApplicationController
     end
   end
   
+  # GET /users/:id/edit
+  def edit
+    @user = User.find(params[:id]) # findにしているので、存在しなかった場合例外が発生
+    # => app/views/users/edit.html.erb
+  end
+  
   private
   
   def user_params
