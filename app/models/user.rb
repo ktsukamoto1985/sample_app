@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save { self.email = self.email.downcase }
+  before_save { self.email = self.email.downcase } # saveが実行される直前でこれを実行する
   validates :name,  presence: true,
                    length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -9,7 +9,9 @@ class User < ApplicationRecord
                    uniqueness: true
   has_secure_password
   
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, 
+                       length: { minimum: 6 }, 
+                       allow_nil: true
   
   # 引数に渡された文字列をハッシュ化して返す
   def User.digest(string)
@@ -23,5 +25,6 @@ class User < ApplicationRecord
   # User.new.digest('foobar')
   # みたいになる
   
+
   
 end
