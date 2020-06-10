@@ -45,4 +45,15 @@ module SessionsHelper
     @current_user = nil # メモ化した変数を消す
   end
   
+  # 記憶したURL (もしくはデフォルト値) にリダイレクト 10.2.3
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # アクセスしようとしたURLを覚えておく 10.2.3
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+  
 end

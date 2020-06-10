@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password]) #ANDなので@userがnilかfalseならもう右はやらない(nilガード)
       # Success
       log_in user # log_inはsessions_helperにある
-      redirect_to user
+      redirect_back_or user
     else
       # Failure
       # alert-danger => 赤色のflash
