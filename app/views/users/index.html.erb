@@ -1,11 +1,16 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+<%= will_paginate %>
+
 <ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 50 %>
-      <%= link_to user.name, user %>
-    </li>
-  <% end %>
+  <!--<% @users.each do |user| %>-->
+  <!--  <%= render user %>-->
+  <!--<% end %>-->
+  <!--この３行を、以下の１行でより簡潔に書くことができる-->
+  <!--@usersは多分Userオブジェクトのリストだと推測してくれる-->
+  <!--すると、@usersのそれぞれについて、userをrenderしてくれるので簡潔に書ける-->
+  <%= render @users %>
 </ul>
+
+<%= will_paginate %>
