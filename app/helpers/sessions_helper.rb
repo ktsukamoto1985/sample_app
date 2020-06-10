@@ -28,7 +28,11 @@ module SessionsHelper
       # こういうのをメモ化という
       
     end
-    
+  end
+  
+  # 渡されたユーザーがカレントユーザーであればtrueを返す
+  def current_user?(user)
+    user && user == current_user # nilガードも完璧
   end
   
   def logged_in?

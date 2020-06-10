@@ -16,3 +16,8 @@ michael:
 # しょうがないから自分でハッシュ化するメソッドを作るしかない
 # has_secure_passwordがやってくれてた
 # password:ってつけちゃうとエラーが出る
+
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>
