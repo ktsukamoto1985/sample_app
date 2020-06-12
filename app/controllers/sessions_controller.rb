@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     # ローカル変数で問題ないので@userにはしなくて十分
     user = User.find_by(email: params[:session][:email].downcase) # find_byなのでいなかったらnilが返ってくる
     
-    if user && user.authenticate(params[:session][:password]) #ANDなので@userがnilかfalseならもう右はやらない(nilガード)
+    # if user && user.authenticate(params[:session][:password]) #ANDなので@userがnilかfalseならもう右はやらない(nilガード)
+    if user&.authenticate(params[:session][:password]) # ぼっち演算子を使えば簡単に書ける
       # Success
       log_in user # log_inはsessions_helperにある
       redirect_back_or user

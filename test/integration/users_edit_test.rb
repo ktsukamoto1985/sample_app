@@ -16,6 +16,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password_confirmation: "bar" } }
 
     assert_template 'users/edit' # ちゃんと失敗して元のtemplateに戻ってくる
+    assert_select "div.alert", "The form contains 4 errors."
   end
   
   # test "successful edit" do # 今までのテストは
