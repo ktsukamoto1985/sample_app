@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+                                  
   before_save { self.email = self.email.downcase } # saveが実行される直前でこれを実行する
   validates :name,  presence: true,
                    length: { maximum: 30 }
