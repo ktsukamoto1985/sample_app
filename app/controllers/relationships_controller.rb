@@ -3,15 +3,23 @@ class RelationshipsController < ApplicationController
 
   # POST /relationships
   def create
-    user = User.find(params[:followed_id])
-    current_user.follow(user)
-    redirect_to user
+    @user = User.find(params[:followed_id])
+    current_user.follow(@user)
+    # redirect_to user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js # => app/voews/relationships/create.js.erb
+    end
   end
 
   # DELETE /relationships/:id
   def destroy
-    user = Relationship.find(params[:id]).followed
-    current_user.unfollow(user)
-    redirect_to user
+    @user = Relationship.find(params[:id]).followed
+    current_user.unfollow(@user)
+    # redirect_to user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js # => app/voews/relationships/destroy.js.erb
+    end
   end
 end
